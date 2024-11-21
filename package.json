@@ -1,5 +1,5 @@
 {
-  "name": "uber-clone-yt",
+  "name": "m-cab",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {
@@ -9,25 +9,43 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^3.4.0",
+    "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
-    "@react-navigation/stack": "^6.3.29",
+    "@react-navigation/stack": "^6.4.1",
     "@reduxjs/toolkit": "^2.2.5",
-    "expo": "^51.0.14",
+    "cross-spawn": "^7.0.5",
+    "expo": "^51.0.39",
+    "expo-location": "^17.0.1",
     "expo-status-bar": "~1.12.1",
+    "expo-updates": "~0.25.27",
+    "link": "^2.1.1",
+    "osenv": "^0.1.5",
     "react": "18.2.0",
-    "react-native": "^0.74.2",
+    "react-geocode": "^1.0.0-alpha.1",
+    "react-native": "^0.74.5",
+    "react-native-autocomplete-input": "^5.4.0",
     "react-native-dotenv": "^3.4.11",
     "react-native-elements": "^3.4.3",
-    "react-native-gesture-handler": "^2.16.2",
+    "react-native-geolocation-service": "^5.3.1",
+    "react-native-gesture-handler": "^2.16.1",
     "react-native-google-places-autocomplete": "^2.5.6",
     "react-native-maps": "^1.14.0",
-    "react-native-safe-area-context": "4.10.1",
-    "react-native-screens": "3.31.1",
+    "react-native-maps-directions": "^1.9.0",
+    "react-native-reanimated": "^3.10.1",
+    "react-native-safe-area-context": "^4.10.5",
+    "react-native-screens": "^3.31.1",
     "react-native-vector-icons": "^10.1.0",
+    "react-native-webp": "^0.3.1",
     "react-redux": "^9.1.2",
     "redux": "^5.0.1",
+    "rimraf": "^6.0.1",
     "tailwind-react-native-classnames": "^1.5.1"
+  },
+  "overrides": {
+    "cross-spawn": "^7.0.5",
+    "send": "^0.19.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -35,4 +53,5 @@
     "typescript": "^5.3.3"
   },
   "private": true
+ 
 }

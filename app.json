@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "uber-clone-yt",
-    "slug": "uber-clone-yt",
+    "name": "m-cab",
+    "slug": "m-cab",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,10 +18,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mwendastro.mcab"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f7e56325-bf31-49cd-93f2-82f9f2bf211a"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a96a40ac-4c0a-4562-ad85-7f0c4a9eab07"
+      }
     }
   }
 }
