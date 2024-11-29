@@ -17,6 +17,8 @@
     "@reduxjs/toolkit": "^2.2.5",
     "@xmldom/xmldom": "^0.9.5",
     "cross-spawn": "^7.0.5",
+    "eslint-config-next": "^15.0.3",
+    "eslint-plugin-jest": "^25.7.0",
     "expo": "^52.0.11",
     "expo-location": "~18.0.2",
     "expo-status-bar": "~2.0.0",
@@ -57,9 +59,14 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.3.12",
-    "eslint": "^9.15.0",
+    "eslint": "9.15.0",
     "react-scripts": "^5.0.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.7.2"
   },
-  "private": true
+  "private": true,
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  }
 }
