@@ -6,7 +6,7 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-     "build-prod": "parcel build src/index.html",
+    "build": "react-scripts build",
     "web": "expo start --web"
   },
   "dependencies": {
