@@ -27,6 +27,10 @@
     "runtimeVersion": {
       "policy": "appVersion"
     },
+
+    "newArchEnabled": true,
+
+
     "extra": {
       "eas": {
         "projectId": "bb484594-01d5-49e2-a840-553f2d087dba"
