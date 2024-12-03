@@ -105,7 +105,7 @@ const HomeScreen = () => {
   return (
 
     <SafeAreaView style={tw`bg-white h-full`}>
-      < View style={tw`p-3 `}>
+      <View View style={tw`p-3 `}>
         
           <Image
             style={{
@@ -215,7 +215,7 @@ const HomeScreen = () => {
 
            </View>
       
-          <View style={{
+           <View style={{
               backgroundColor: "white",
               flexDirection:"row",
               paddingTop: 10,
@@ -250,7 +250,7 @@ const HomeScreen = () => {
               </TouchableOpacity>
               )  
               }
-              </View>
+             </View>
            
       
               <NavOptions />
