@@ -161,7 +161,7 @@ const HomeScreen = () => {
                
                 >
                    <Ionicons name="location" size={30} color="green"
-                     onPress= {setOrigin}      
+                     onPress= {setLocation}      
     
                  />
                  
