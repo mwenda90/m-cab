@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
-import tw from "tailwind-react-native-classnames";
+import tw from 'twrnc';
 import Map from '../components/Map';
 import NavigateCard from '../components/NavigateCard';
 import RideOptionsCard from '../components/RideOptionsCard';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { useNavigation } from '@react-navigation/native';
-import HomeScreen from './HomeScreen';
+
 
 
 const MapScreen = () => {

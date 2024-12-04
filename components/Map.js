@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity,Image  } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import tw from "tailwind-react-native-classnames";
+import tw from 'twrnc';
 import { useDispatch, useSelector, } from 'react-redux';
 import { selectDestination, selectOrigin, setTravelTimeInformation } from '../slices/navSlice';
 import MapViewDirections from 'react-native-maps-directions';
