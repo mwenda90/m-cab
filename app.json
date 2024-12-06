@@ -27,10 +27,9 @@
     "runtimeVersion": {
       "policy": "appVersion"
     }
-
+   
   },
-   "android": { "newArchEnabled": true }
+  "android": {
+    "newArchEnabled": true
+  }
 }
-
-
-
