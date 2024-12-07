@@ -15,6 +15,7 @@
     "@babel/plugin-transform-private-methods": "^7.25.9",
     "@jridgewell/sourcemap-codec": "^1.5.0",
     "@react-google-maps/api": "^2.20.3",
+    "@react-native-community/cli-config": "^16.0.0",
     "@react-native-community/geolocation": "^3.4.0",
     "@react-native-masked-view/masked-view": "^0.3.2",
     "@react-navigation/native": "^7.0.4",
@@ -48,7 +49,6 @@
     "redux": "^5.0.1",
     "twrnc": "^4.6.0"
   },
- 
   "overrides": {
     "cross-spawn": "^7.0.5",
     "send": "^0.19.0",
@@ -57,10 +57,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
-    "@react-native-community/cli": "latest",
     "@types/react": "^18.3.14",
     "react-scripts": "^5.0.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.7.2"
   },
   "private": true
 }
