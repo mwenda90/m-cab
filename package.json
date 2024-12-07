@@ -13,22 +13,16 @@
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.25.9",
     "@babel/plugin-transform-numeric-separator": "^7.25.9",
     "@babel/plugin-transform-private-methods": "^7.25.9",
-    "@eslint/js": "^9.16.0",
     "@jridgewell/sourcemap-codec": "^1.5.0",
     "@react-google-maps/api": "^2.20.3",
     "@react-native-community/geolocation": "^3.4.0",
     "@react-native-masked-view/masked-view": "^0.3.2",
-    "@react-native/eslint-plugin": "^0.75.4",
     "@react-navigation/native": "^7.0.4",
     "@react-navigation/native-stack": "^7.1.1",
     "@react-navigation/stack": "^7.0.6",
     "@reduxjs/toolkit": "^2.4.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "@typescript-eslint/parser": "^8.17.0",
-    "@typescript-eslint/types": "^7.18.0",
-    "@typescript-eslint/utils": "^7.18.0",
     "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
-    "eslint-plugin-jest": "^27.9.0",
     "expo": "52.0.17",
     "expo-location": "~18.0.2",
     "expo-status-bar": "~2.0.0",
@@ -54,9 +48,7 @@
     "redux": "^5.0.1",
     "twrnc": "^4.6.0"
   },
-  "peerDependencies": {
-    "eslint": ">= 9"
-  },
+ 
   "overrides": {
     "cross-spawn": "^7.0.5",
     "send": "^0.19.0",
@@ -67,9 +59,6 @@
     "@babel/core": "^7.26.0",
     "@react-native-community/cli": "latest",
     "@types/react": "^18.3.14",
-    "eslint": "^9.16.0",
-    "eslint-config-eslint": "^11.0.0",
-    "eslint-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
     "react-scripts": "^5.0.1",
     "typescript": "^5.3.3"
   },
