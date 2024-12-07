@@ -58,8 +58,8 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@types/react": "^18.3.14",
-    "react-scripts": "^5.0.1",
-    "typescript": "^5.7.2"
+    "react-scripts": "^5.0.1"
+    
   },
   "private": true
 }
