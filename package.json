@@ -8,6 +8,29 @@
     "ios": "expo run:ios",
     "web": "expo start --web"
   },
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "react-native-maps",
+          "react-native-geolocation-service",
+          "@babel/plugin-transform-class-properties",
+          "@babel/plugin-transform-nullish-coalescing-operator",
+          "@babel/plugin-transform-numeric-separator",
+          "@babel/plugin-transform-private-methods",
+          "@jridgewell/sourcemap-codec",
+          "@react-google-maps/api, @react-native-community/cli-config",
+          "@reduxjs/toolkit",
+          "@rollup/plugin-terser",
+          "react-geocode",
+          "react-native-elements",
+          "react-redux",
+          "redux",
+          "link"
+        ]
+      }
+    }
+  },
   "dependencies": {
     "@babel/plugin-transform-class-properties": "^7.25.9",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.25.9",
@@ -25,6 +48,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
     "expo": "52.0.17",
+    "expo-dev-client": "~5.0.5",
     "expo-location": "~18.0.2",
     "expo-status-bar": "~2.0.0",
     "expo-updates": "~0.26.9",
@@ -41,7 +65,7 @@
     "react-native-google-places-autocomplete": "^2.5.7",
     "react-native-maps": "1.18.0",
     "react-native-maps-directions": "^1.9.0",
-    "react-native-reanimated": "~3.16.1",
+    "react-native-reanimated": "^3.16.4",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.1.0",
     "react-native-vector-icons": "^10.1.0",
@@ -57,8 +81,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
+    "@react-native-community/cli": "16.0.0",
     "@types/react": "^18.3.14",
     "react-scripts": "^5.0.1"
   },
-  "private": true
+  "private": true,
+  "expo.doctor.reactNativeDirectoryCheck.listUnknownPackages": false
 }

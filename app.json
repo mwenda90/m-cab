@@ -19,7 +19,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.mwendastro.mcab"
+      "package": "com.mwendastro.mcab",
+        "newArchEnabled": true 
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -27,6 +28,9 @@
     "runtimeVersion": {
       "policy": "appVersion"
     },
+  
+   
+  
     "extra": {
       "eas": {
         "projectId": "bb484594-01d5-49e2-a840-553f2d087dba"
