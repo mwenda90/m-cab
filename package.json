@@ -6,6 +6,7 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
+    "build": "react-scripts build",
     "web": "expo start --web"
   },
   "expo": {
@@ -49,7 +50,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@rollup/plugin-terser": "^0.4.4",
     "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
-    "expo": "52.0.17",
+    "expo": "~52.0.18",
     "expo-dev-client": "^5.0.6",
     "expo-location": "^18.0.4",
     "expo-status-bar": "~2.0.0",
@@ -57,7 +58,7 @@
     "link": "^2.1.1",
     "react": "^18.3.1",
     "react-geocode": "^1.0.0-alpha.1",
-    "react-native": "0.76.3",
+    "react-native": "^0.76.5",
     "react-native-autocomplete-input": "^5.4.0",
     "react-native-dotenv": "^3.4.11",
     "react-native-elements": "^3.4.3",
@@ -86,7 +87,7 @@
     "@babel/core": "^7.26.0",
     "@react-native-community/cli": "16.0.2",
     "@types/react": "^18.3.17",
-    "typescript": "^3.9.10"
+    "typescript": "^5.3.3"
   },
   "private": true,
   "expo.doctor.reactNativeDirectoryCheck.listUnknownPackages": false
