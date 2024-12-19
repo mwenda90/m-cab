@@ -63,7 +63,7 @@
     "@babel/core": "^7.26.0",
     "@react-native-community/cli-config": "^16.0.2",
     "@types/react": "^18.3.17",
-    "typescript": "^5.3.3"
+    "typescript": "^5.7.2"
   },
   "private": true,
   "expo.doctor.reactNativeDirectoryCheck.listUnknownPackages": false
