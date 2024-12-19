@@ -1,7 +1,7 @@
 {
   "name": "m-cab",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
@@ -9,29 +9,7 @@
     "build": "react-scripts build",
     "web": "expo start --web"
   },
-  "expo": {
-    "doctor": {
-      "reactNativeDirectoryCheck": {
-        "exclude": [
-          "react-native-maps",
-          "react-native-geolocation-service",
-          "@babel/plugin-transform-class-properties",
-          "@babel/plugin-transform-nullish-coalescing-operator",
-          "@babel/plugin-transform-numeric-separator",
-          "@babel/plugin-transform-private-methods",
-          "@jridgewell/sourcemap-codec",
-          "@react-google-maps/api, @react-native-community/cli-config",
-          "@reduxjs/toolkit",
-          "@rollup/plugin-terser",
-          "react-geocode",
-          "react-native-elements",
-          "react-redux",
-          "redux",
-          "link"
-        ]
-      }
-    }
-  },
+ 
   "dependencies": {
     "@babel/plugin-transform-class-properties": "^7.25.9",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.25.9",
@@ -50,7 +28,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@rollup/plugin-terser": "^0.4.4",
     "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
-    "expo": "~52.0.18",
+    "expo": "~52.0.19",
     "expo-dev-client": "^5.0.6",
     "expo-location": "^18.0.4",
     "expo-status-bar": "~2.0.0",
@@ -92,3 +70,4 @@
   "private": true,
   "expo.doctor.reactNativeDirectoryCheck.listUnknownPackages": false
 }
+
