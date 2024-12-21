@@ -92,6 +92,6 @@
     "@react-native-community/cli-config": "^16.0.2",
     "@types/react": "^18.3.17"
   },
-  "private": true,
-  "expo.doctor.reactNativeDirectoryCheck.listUnknownPackages": false
+  "private": true
+
 }
