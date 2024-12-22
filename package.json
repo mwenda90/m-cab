@@ -6,7 +6,7 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "build": "webpack --config webpack.config.js",
+    "build": "./node_modules/.bin/webpack --config webpack.conf.js",
     "web": "expo start --web"
   },
   "dependencies": {
