@@ -7,6 +7,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "build": "react-scripts build",
+    "build-prod": "parcel build src/index.html",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -53,7 +54,8 @@
     "redux": "^5.0.1",
     "twrnc": "^4.6.0",
     "typescript": "^5.7.2",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^6.0.1",
+    "expo-system-ui": "~4.0.6"
   },
   "expo": {
     "doctor": {
