@@ -57,33 +57,7 @@
     "typescript": "^5.7.2",
     "webpack-cli": "^6.0.1"
   },
-  "expo": {
-    "doctor": {
-      "reactNativeDirectoryCheck": {
-        "exclude": [
-          "react-redux",
-          "@babel/plugin-transform-class-properties",
-          "@babel/plugin-transform-nullish-coalescing-operator",
-          "@babel/plugin-transform-numeric-separator",
-          " @babel/plugin-transform-private-methods",
-          "@jridgewell/sourcemap-codec",
-          "@react-google-maps/api",
-          "@react-navigation/core",
-          "@reduxjs/toolkit",
-          "@rollup/plugin-terser",
-          "link",
-          "react-geocode",
-          "react-native-elements",
-          "react-scripts",
-          "redux",
-          "react-native-maps",
-          "react-native-geolocation-service",
-          "react-native-geolocation-service",
-          "react-native-maps-directions"
-        ]
-      }
-    }
-  },
+
   "overrides": {
     "cross-spawn": "^7.0.5",
     "send": "^0.19.0",
