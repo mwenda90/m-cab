@@ -20,7 +20,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.mwendastro.mcab",
-      "newArchEnabled": false
+      "newArchEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
