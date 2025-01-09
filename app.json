@@ -21,6 +21,7 @@
       },
       "package": "com.mwendastro.mcab",
       "newArchEnabled": false
+      
     },
     "web": {
       "favicon": "./assets/favicon.png"
