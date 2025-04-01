@@ -4,12 +4,11 @@ import { createSlice }from "@reduxjs/toolkit";
 
 
 
-
 const defaultOrigin = { location: { lat: 0, lng: 0 } }; // use origin value that makes sense
 
-const initialState = {
-    
-    origin: defaultOrigin,
+
+const initialState = { 
+    origin: null,
     destination: null,
     travelTimeInformation: null,
 };
@@ -40,7 +39,7 @@ export const { setOrigin, setDestination, setTravelTimeInformation } =
 
 // Selectors
 
-export const selectOrigin = (state) => state.nav.origin;
+export const selectOrigin = (state) => state.nav.origin ?? defaultOrigin;
 export const selectDestination = (state) => state.nav.destination;
 export const selectTravelTimeInformation = (state) => 
   state.nav.travelTimeInformation;

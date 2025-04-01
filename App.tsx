@@ -5,20 +5,23 @@ import { store } from "./store";
 import HomeScreen from "./screens/HomeScreen";
 import MapScreen from "./screens/MapScreen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import 'react-native-gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-get-random-values';
+import { enableScreens } from 'react-native-screens';
 
+enableScreens();
 
 
 
 
 export default function App() {
-  const stack = createStackNavigator ();
+  const stack = createStackNavigator();
  
-
+  
   return (
+  <GestureHandlerRootView style={{ flex: 1 }}>
     <Provider store={store}>
       <NavigationContainer>
        <SafeAreaProvider>
@@ -47,6 +50,8 @@ export default function App() {
        </SafeAreaProvider>
       </NavigationContainer>
     </Provider>
+  </GestureHandlerRootView>
   );
+
 };
 

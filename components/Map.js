@@ -74,7 +74,7 @@ const Map = () => {
     <MapView
       ref={mapRef}
       style={tw`flex-1`}
-      mapType="mutedStandard"
+      mapType="standard"
       showsUserLocation ={true}
       followsUserLocation ={true}
       initialRegion={{

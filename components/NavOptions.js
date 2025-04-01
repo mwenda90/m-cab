@@ -1,7 +1,8 @@
-import { FlatList, TouchableOpacity,  Image, Text, View } from 'react-native';
+import { FlatList, TouchableOpacity, Image, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import tw from 'twrnc';
 import { Icon } from 'react-native-elements';
+import 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { selectOrigin } from '../slices/navSlice';
@@ -43,11 +44,10 @@ const NavOptions = () => {
         onPress={() => navigation.navigate(item.screen)}
         style={[ tw`p-2 pl-6 pb-3 pt-2 bg-gray-200 m-2 w-40`, {height:150}]}
         disabled={!origin}
-       
        >
        
 
-            <View style={tw`${!origin && "opacity-20"}`}>
+       <View style={tw`${!origin && "opacity-20"}`}>
              <Image
                style={{ width: 50, height: 50, 
                resizeMode: "contain" }}
