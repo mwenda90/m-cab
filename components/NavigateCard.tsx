@@ -1,24 +1,26 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import tw from 'twrnc';
 import { GooglePlacesAutocomplete } from 
 "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch } from "react-redux";
 import { setDestination } from "../slices/navSlice";
-import { useNavigation } from "@react-navigation/native";
-import NavFavourites  from '../components/NavFavourites';
+import { router } from 'expo-router';
+import NavFavourites  from './NavFavourites';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Icon } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 
 const NavigateCard = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+
+  const handleRidePress = () => {
+    router.push('/ride-options' as any);
+  };
 
   return (
-    <SafeAreaView style={tw`bg-white flex-1`}>
-      <Text style={tw`text-center py-5 text-xl`}>M ~ CAB </Text>
-      <View style={tw`border-t border-gray-200 flex-shrink`}>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>M ~ CAB </Text>
+      <View style={styles.inputContainer}>
         <View>
           <GooglePlacesAutocomplete 
              placeholder="Where to?"
@@ -34,7 +36,7 @@ const NavigateCard = () => {
                 })
               );
 
-               navigation.navigate("RideOptionsCard");
+               handleRidePress();
               
              }}
              enablePoweredByContainer={false}
@@ -45,38 +47,27 @@ const NavigateCard = () => {
              nearbyPlacesAPI="GooglePlacesSearch"
              debounce={400}
           />
-         
-
-
         </View>
 
         <NavFavourites />
       </View>
 
-      <View
-        style={tw`flex-row justify-evenly py-2 mt-auto border-t 
-        border-gray-100`}
-     >
+      <View style={styles.buttonContainer}>
         <TouchableOpacity 
-          onPress={() => navigation.navigate('RideOptionsCard')}
-          style={tw`flex flex-row justify-between bg-black w-24 px-4 py-3 
-          rounded-full`}
+          onPress={handleRidePress}
+          style={styles.ridesButton}
        >
-          <Icon name="car" type="font-awesome" color="white" size={16} />
-           <Text style={tw`text-white text-center`}>Rides</Text>
+          <Ionicons name="car" color="white" size={16} />
+           <Text style={styles.ridesText}>Rides</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-         style={tw`flex flex-row justify-between w-24 px-4 py-3
-         rounded-full`}
-     >
-          <Icon
+        <TouchableOpacity style={styles.eatsButton}>
+          <Ionicons
             name="fast-food-outline"
-            type= "ionicon"
             color="black"
             size={16}
        />
-          <Text style={tw`text-center`}>Eats</Text>
+          <Text style={styles.eatsText}>Eats</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -84,6 +75,55 @@ const NavigateCard = () => {
 };
 
 export default NavigateCard;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  title: {
+    textAlign: 'center',
+    paddingVertical: 20,
+    fontSize: 20,
+  },
+  inputContainer: {
+    borderTopWidth: 1,
+    borderTopColor: '#e5e7eb',
+    flexShrink: 1,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingVertical: 8,
+    marginTop: 'auto',
+    borderTopWidth: 1,
+    borderTopColor: '#f3f4f6',
+  },
+  ridesButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'black',
+    width: 96,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 25,
+  },
+  ridesText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  eatsButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 96,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 25,
+  },
+  eatsText: {
+    textAlign: 'center',
+  },
+});
 
 const toInputBoxStyles = StyleSheet.create({
   container: {
@@ -99,6 +139,5 @@ const toInputBoxStyles = StyleSheet.create({
   textInputContainer: {
     paddingHorizontal: 20,
     paddingBottom: 0,
-        
   },
 });

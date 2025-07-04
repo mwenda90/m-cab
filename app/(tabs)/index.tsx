@@ -6,24 +6,22 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Platform,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import tw from "twrnc";
-import NavOptions from "../components/NavOptions";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch, useSelector } from "react-redux";
-import { setDestination, setOrigin, selectOrigin } from "../slices/navSlice";
+import { setDestination, setOrigin, selectOrigin } from "../../slices/navSlice";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import { Ionicons } from "@expo/vector-icons";
-
-navigator.geolocation = require("expo-location");
-navigator.geolocation = require("react-native-geolocation-service");
+import { router } from 'expo-router';
+import NavOptions from "../../components/NavOptions";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const logoImg = require("../assets/mcab_logo.jpg");
+  const logoImg = require("../../assets/mcab_logo.jpg");
   const mapRef = React.createRef();
   const [displayCurrentAddress, setDisplayCurrentAddress] = useState(
     "Location Loading....."
@@ -38,13 +36,29 @@ const HomeScreen = () => {
 
   useEffect(() => {
     (async () => {
-      // permissions check
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
+      if (Platform.OS === 'web') {
+        // Web fallback location (Nairobi, Kenya)
+        const webLocation = {
+          latitude: -1.2921,
+          longitude: 36.8219,
+        };
+        setCurrentLocation(webLocation);
+        setMapRegion({
+          longitude: webLocation.longitude,
+          latitude: webLocation.latitude,
+          longitudeDelta: 0.0922,
+          latitudeDelta: 0.0421,
+        });
+        setDisplayCurrentAddress("Nairobi, Kenya");
         return;
       }
-      console.log("status", status);
+
+      // permissions check for mobile
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.log("Permission to access location was denied");
+        return;
+      }
 
       let location = await Location.getCurrentPositionAsync({});
       setCurrentLocation(location.coords);
@@ -56,22 +70,17 @@ const HomeScreen = () => {
         latitudeDelta: 0.0421,
       });
 
-      console.log("location", location);
-
       //get current position lat and long
       const { coords } = await Location.getCurrentPositionAsync();
-      console.log(coords);
 
       if (coords) {
         const { latitude, longitude } = coords;
-        console.log(latitude, longitude);
 
         //provide lat and long to get the the actual address
         let response = await Location.reverseGeocodeAsync({
           latitude,
           longitude,
         });
-        console.log(response);
 
         //loop on the response to get the actual result
         for (let item of response) {
@@ -82,25 +91,20 @@ const HomeScreen = () => {
     })();
   }, []);
 
+  const handleGetRide = () => {
+    router.push('/map');
+  };
+
   return (
-    <SafeAreaView style={tw`bg-white h-full`}>
-      <View View style={tw`p-3 `}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
         <Image
-          style={{
-            width: 200,
-            height: 120,
-            resizeMode: "contain",
-          }}
+          style={styles.logo}
           source={logoImg}
         />
 
-        <View
-          style={{
-            textDecorationLine: "underline",
-            borderRadius: 40,
-          }}
-        >
-          <Text style={tw`text-center  text-xl`}>Ride With Us ?</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Ride With Us ?</Text>
         </View>
 
         <View>
@@ -114,12 +118,12 @@ const HomeScreen = () => {
                 fetchDetails={true}
                 autoFocus={false}
                 styles={toInputBoxStyles}
-                listViewDisplayed="auto" // true/false/undefined
+                listViewDisplayed="auto"
                 renderRow={(row) =>
                   row.isCurrentLocation ? (
-                    <View style={{ flexDirection: "row", marginLeft: 10 }}>
-                      <Text>icon</Text>
-                      <Text style={{ color: "black", marginLeft: 10 }}>
+                    <View style={styles.currentLocationRow}>
+                      <Text>📍</Text>
+                      <Text style={styles.currentLocationText}>
                         {row.description}
                       </Text>
                     </View>
@@ -137,18 +141,7 @@ const HomeScreen = () => {
                   dispatch(setDestination(null));
                 }}
                 renderRightButton={() => (
-                  <View
-                    style={{
-                      marginLeft: 1,
-                      backgroundColor: "#DDDDDF",
-                      flexDirection: "row",
-                      height: 44,
-
-                      padding: 5,
-                      borderBottomRightRadius: 30,
-                      borderTopRightRadius: 30,
-                    }}
-                  >
+                  <View style={styles.rightButton}>
                     <Ionicons
                       name="location"
                       size={30}
@@ -158,18 +151,7 @@ const HomeScreen = () => {
                   </View>
                 )}
                 renderLeftButton={() => (
-                  <View
-                    style={{
-                      height: 44,
-                      flexDirection: "row",
-                      marginLeft: 2,
-                      backgroundColor: "#DDDDDF",
-                      padding: 5,
-                      borderTopLeftRadius: 30,
-                      borderBottomLeftRadius: 30,
-                      alignItems: "center",
-                    }}
-                  >
+                  <View style={styles.leftButton}>
                     <Ionicons name="search" size={25} color="black" />
                   </View>
                 )}
@@ -179,52 +161,38 @@ const HomeScreen = () => {
                 query={{
                   key: GOOGLE_MAPS_APIKEY,
                   language: "en",
-                  types: "geocode", // default: 'geocode'
+                  types: "geocode",
                   components: "country:ke",
                 }}
                 GooglePlacesSearchQuery={{
-                  // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
                   rankby: "distance",
-                  // type: 'cafe'
                 }}
                 renderDescription={(row) =>
                   row.description || row.formatted_address || row.name
                 }
-                nearbyPlacesAPI="GoogleReverseGeocoding" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+                nearbyPlacesAPI="GoogleReverseGeocoding"
                 filterReverseGeocodingByTypes={[
                   "locality",
                   "administrative_area_level_3",
-                ]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+                ]}
                 textInputProps={{ onBlur: () => {} }}
-                //GooglePlacesDetailsQuery={{ fields: 'formatted_address,geometry' }}
                 GooglePlacesDetailsQuery={{
                   fields: "formatted_address,geometry,district",
                 }}
-                GoogleReverseGeocodingQuery={
-                  {
-                    // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
-                  }
-                }
+                GoogleReverseGeocodingQuery={{}}
                 debounce={400}
               />
             </View>
           </ScrollView>
         </View>
 
-        <View
-          style={{
-            backgroundColor: "white",
-            flexDirection: "row",
-            paddingTop: 10,
-          }}
-        >
+        <View style={styles.locationContainer}>
           <Ionicons name="location" color="black" size={26} />
-
           {location ? (
             <Text>
-              latitude: {location.coods.latitude}
+              latitude: {location.coods?.latitude}
               {"\n"}
-              longitude: {location.coods.longitude}
+              longitude: {location.coods?.longitude}
             </Text>
           ) : (
             <TouchableOpacity>
@@ -232,8 +200,8 @@ const HomeScreen = () => {
                 onPress={(data, details = null) => {
                   dispatch(
                     setOrigin({
-                      location: details.geometry.location,
-                      description: data.description,
+                      location: details?.geometry?.location,
+                      description: data?.description,
                     })
                   );
                   dispatch(setDestination(null));
@@ -247,19 +215,18 @@ const HomeScreen = () => {
 
         <NavOptions />
 
-        <View style={tw`h-1/3`}>
+        <View style={styles.mapContainer}>
           <MapView
             ref={mapRef}
-            style={tw`flex-1`}
+            style={styles.map}
             region={mapRegion}
             showsUserLocation={true}
             followsUserLocation={true}
-            currentLocation={true}
             showsTraffic={true}
             loadingEnabled={true}
             initialRegion={mapRegion}
           >
-            {mapRegion?.location && (
+            {mapRegion?.location && origin && (
               <Marker
                 coordinate={{
                   latitude: origin.location.lat,
@@ -270,7 +237,7 @@ const HomeScreen = () => {
                 identifier="origin"
               >
                 <View>
-                  <Image source={require("../assets/pin5.png")} />
+                  <Image source={require("../../assets/pin5.png")} />
                 </View>
               </Marker>
             )}
@@ -278,7 +245,7 @@ const HomeScreen = () => {
 
           {address && (
             <TouchableOpacity
-              style={{ position: "absolute", top: 20, right: 20 }}
+              style={styles.addressOverlay}
               onPress={() => setAddress(!address)}
             >
               <Text>{displayCurrentAddress}</Text>
@@ -292,89 +259,86 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  content: {
+    padding: 12,
+  },
+  logo: {
+    width: 200,
+    height: 120,
+    resizeMode: "contain",
+  },
+  titleContainer: {
+    borderRadius: 40,
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 20,
+    textDecorationLine: "underline",
+  },
+  currentLocationRow: {
+    flexDirection: 'row',
+    marginLeft: 10,
+  },
+  currentLocationText: {
+    color: 'black',
+    marginLeft: 10,
+  },
+  rightButton: {
+    marginLeft: 1,
+    backgroundColor: "#DDDDDF",
+    flexDirection: "row",
+    height: 44,
+    padding: 5,
+    borderBottomRightRadius: 30,
+    borderTopRightRadius: 30,
+  },
+  leftButton: {
+    height: 44,
+    flexDirection: "row",
+    marginLeft: 2,
+    backgroundColor: "#DDDDDF",
+    padding: 5,
+    borderTopLeftRadius: 30,
+    borderBottomLeftRadius: 30,
+    alignItems: "center",
+  },
+  locationContainer: {
+    backgroundColor: "white",
+    flexDirection: "row",
+    paddingTop: 10,
+  },
+  mapContainer: {
+    height: '33%',
+  },
+  map: {
+    flex: 1,
+  },
+  addressOverlay: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+  },
+});
+
 const toInputBoxStyles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     paddingTop: 20,
-
     flex: 0,
   },
   textInput: {
     flex: 1,
     backgroundColor: "#DDDDDF",
-
     fontSize: 18,
     borderRadius: 0,
   },
   textInputContainer: {
     paddingHorizontal: 2,
     paddingBottom: 0,
-  },
-  buttomP: {
-    height: 60,
-    width: 40,
-    borderWidth: 1,
-    backgroundColor: "#fff",
-  },
-  description: {
-    fontWeight: "bold",
-  },
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  map: {
-    width: "100%",
-    height: "100%",
-    minZoomLevel: 10,
-    maxZoomLevel: 15,
-  },
-
-  container2: {
-    height: "75%",
-    justifyContent: "center",
-  },
-});
-
-const styl = StyleSheet.create({
-  customMarker: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  addressBox: {
-    width: 150,
-    height: 45,
-    backgroundColor: "#fff",
-    paddingVertical: 5,
-    paddingHorizontal: 7,
-    borderRadius: 5,
-    borderWidth: 0.5,
-    borderColor: "#ccc",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 3,
-  },
-  addressText: {
-    textDecorationLine: "underline",
-  },
-});
-
-const locationstyles = StyleSheet.create({
-  container: {
-    flex: 0,
-    backgroundColor: "black",
-    paddingTop: 10,
-  },
-  textInput: {
-    flex: 1,
-    backgroundColor: "#DDDDDF",
-    fontSize: 18,
-    borderRadius: 0,
   },
 });
